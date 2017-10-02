@@ -4,4 +4,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <array name="coffee_drawables">
+        <item>@drawable/coffee_cappuccino</item>
+        <item>@drawable/coffee_latte</item>
+        <item>@drawable/coffee_macchiato</item>
+        <item>@drawable/coffee_mocha</item>
+    </array>
+    <string-array name="coffee_titles">
+        <item>cappuccino</item>
+        <item>latte</item>
+        <item>macchiato</item>
+        <item>mocha</item>
+    </string-array>
 </resources>
