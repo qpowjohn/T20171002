@@ -2,6 +2,7 @@ package taiwan.beginner.myapplication;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,7 +10,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyDialogFragment.能處理確定取消{
+
+    @Override
+    public void 處理確定() {
+        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
+        Snackbar.make(fab,"收到確定",Snackbar.LENGTH_SHORT)
+                .setAction("Action",null)
+                .show();
+    }
+
+    @Override
+    public void 處理取消() {
+        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
+        Snackbar.make(fab,"收到取消",Snackbar.LENGTH_SHORT)
+                .setAction("Action",null)
+                .show();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

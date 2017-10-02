@@ -3,6 +3,7 @@ package taiwan.beginner.myapplication;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -46,8 +47,18 @@ public class MyDialogFragment extends DialogFragment {
         builder.setTitle("咖啡品項")
                 .setIcon(android.R.drawable.ic_input_add)
                 .setView(view)
-                .setPositiveButton("確定",null)
-                .setNegativeButton("取消",null);
+                .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        okCancelHander.處理確定();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        okCancelHander.處理取消();
+                    }
+                });
 
         return builder.create();
     }
