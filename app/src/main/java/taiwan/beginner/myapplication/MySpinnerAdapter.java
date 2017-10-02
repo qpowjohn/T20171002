@@ -47,7 +47,7 @@ public class MySpinnerAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         String message = "getView() 第幾項 = "+i+"咖啡名稱 = "+coffee_titles.getText(i);
         Log.d(TAG,message);
-
+//
         View v = activity.getLayoutInflater().inflate(R.layout.spinner_layout,null);
         TextView textView =(TextView)v.findViewById(R.id.coffee_title);
         textView.setText(coffee_titles.getText(i));
