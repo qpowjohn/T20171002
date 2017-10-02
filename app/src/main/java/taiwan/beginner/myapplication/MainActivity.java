@@ -6,12 +6,16 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 
-public class MainActivity extends AppCompatActivity implements MyDialogFragment.能處理確定取消{
-
+public class MainActivity extends AppCompatActivity
+        implements MyDialogFragment.能處理確定取消,
+        AdapterView.OnItemSelectedListener{
+private static final String TAG = "MainActivity";
     @Override
     public void 處理確定() {
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
@@ -72,4 +76,13 @@ public class MainActivity extends AppCompatActivity implements MyDialogFragment.
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Log.d(TAG,"onItemSelected , position = "+i);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        Log.d(TAG,"onNothingSelected");
+    }
 }
