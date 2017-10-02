@@ -17,11 +17,12 @@ public class MainActivity extends AppCompatActivity
         AdapterView.OnItemSelectedListener{
 private static final String TAG = "MainActivity";
     @Override
-    public void 處理確定() {
+    public void 處理確定(Coffee coffee) {
         FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
-        Snackbar.make(fab,"收到確定",Snackbar.LENGTH_SHORT)
+        Snackbar.make(fab,"收到確定 coffee = "+coffee,Snackbar.LENGTH_SHORT)
                 .setAction("Action",null)
                 .show();
+        Log.d(TAG,"收到確定 Coffee = "+coffee);
     }
 
     @Override

@@ -19,6 +19,12 @@ public class MySpinnerAdapter extends BaseAdapter {
     private Activity activity;
     private TypedArray coffee_titles;
     private TypedArray coffee_drawables;
+    private int[] img_resource_id_array = {
+            R.drawable.coffee_cappuccino,
+            R.drawable.coffee_latte,
+            R.drawable.coffee_macchiato,
+            R.drawable.coffee_mocha
+    };
 
     public MySpinnerAdapter(Activity activity) {
         this.activity = activity;
@@ -27,6 +33,13 @@ public class MySpinnerAdapter extends BaseAdapter {
         coffee_drawables = resources.obtainTypedArray(R.array.coffee_drawables);
     }
 
+    public TypedArray getCoffee_titles() {
+        return coffee_titles;
+    }
+
+    public int[] getImg_resource_id_array() {
+        return img_resource_id_array;
+    }
 
     @Override
     public int getCount() {
