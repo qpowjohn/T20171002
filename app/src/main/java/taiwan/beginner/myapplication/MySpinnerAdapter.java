@@ -20,7 +20,7 @@ public class MySpinnerAdapter extends BaseAdapter {
     private TypedArray coffee_titles;
     private TypedArray coffee_drawables;
 
-    public MySpinnerAdapter(Activity activity){
+    public MySpinnerAdapter(Activity activity) {
         this.activity = activity;
         Resources resources = activity.getResources();
         coffee_titles = resources.obtainTypedArray(R.array.coffee_titles);
@@ -45,13 +45,13 @@ public class MySpinnerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        String message = "getView() 第幾項 = "+i+"咖啡名稱 = "+coffee_titles.getText(i);
-        Log.d(TAG,message);
+        String message = "getView() 第幾項 = " + i + "咖啡名稱 = " + coffee_titles.getText(i);
+        Log.d(TAG, message);
 //
-        View v = activity.getLayoutInflater().inflate(R.layout.spinner_layout,null);
-        TextView textView =(TextView)v.findViewById(R.id.coffee_title);
+        View v = activity.getLayoutInflater().inflate(R.layout.spinner_layout, null);
+        TextView textView = (TextView) v.findViewById(R.id.coffee_title);
         textView.setText(coffee_titles.getText(i));
-        ImageView imageView = (ImageView)v.findViewById(R.id.coffee_drawable);
+        ImageView imageView = (ImageView) v.findViewById(R.id.coffee_drawable);
         imageView.setImageDrawable(coffee_drawables.getDrawable(i));
         return v;
     }
