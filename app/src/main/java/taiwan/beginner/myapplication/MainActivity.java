@@ -11,25 +11,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity
         implements MyDialogFragment.能處理確定取消,
-        AdapterView.OnItemSelectedListener{
-private static final String TAG = "MainActivity";
+        AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
+    private static final String TAG = "MainActivity";
+    private ListView mListView;
+
     @Override
     public void 處理確定(Coffee coffee) {
-        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
-        Snackbar.make(fab,"收到確定 coffee = "+coffee,Snackbar.LENGTH_SHORT)
-                .setAction("Action",null)
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        Snackbar.make(fab, "收到確定 coffee = " + coffee, Snackbar.LENGTH_SHORT)
+                .setAction("Action", null)
                 .show();
-        Log.d(TAG,"收到確定 Coffee = "+coffee);
+        Log.d(TAG, "收到確定 Coffee = " + coffee);
     }
 
     @Override
     public void 處理取消() {
-        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
-        Snackbar.make(fab,"收到取消",Snackbar.LENGTH_SHORT)
-                .setAction("Action",null)
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        Snackbar.make(fab, "收到取消", Snackbar.LENGTH_SHORT)
+                .setAction("Action", null)
                 .show();
 
     }
@@ -48,11 +51,18 @@ private static final String TAG = "MainActivity";
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
                 DialogFragment fragment = new MyDialogFragment();
-                fragment.show(getSupportFragmentManager(),"MyDialogFragment");
+                fragment.show(getSupportFragmentManager(), "MyDialogFragment");
             }
         });
+initListView();
     }
 
+    private void initListView(){
+        mListView = (ListView)findViewById(R.id.listview);
+        mListView.setEmptyView(findViewById(R.id.empty));
+        mListView.setAdapter(new MyListAdapter(this));
+        mListView.setOnItemClickListener(this);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -79,11 +89,18 @@ private static final String TAG = "MainActivity";
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        Log.d(TAG,"onItemSelected , position = "+i);
+        Log.d(TAG, "onItemSelected , position = " + i);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-        Log.d(TAG,"onNothingSelected");
+        Log.d(TAG, "onNothingSelected");
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        Snackbar.make(fab, "點選了第 " + (i+1) + " 項", Snackbar.LENGTH_SHORT)
+                .setAction("Action", null).show();
     }
 }
