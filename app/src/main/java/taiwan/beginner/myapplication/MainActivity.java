@@ -13,11 +13,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements MyDialogFragment.能處理確定取消,
         AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
     private static final String TAG = "MainActivity";
     private ListView mListView;
+    private List<Coffee> mCoffeeList = new ArrayList<>();
+
+    public List<Coffee> getmCoffeeList() {
+        return mCoffeeList;
+    }
 
     @Override
     public void 處理確定(Coffee coffee) {
@@ -26,6 +34,9 @@ public class MainActivity extends AppCompatActivity
                 .setAction("Action", null)
                 .show();
         Log.d(TAG, "收到確定 Coffee = " + coffee);
+        mCoffeeList.add(coffee);
+        MyListAdapter myListAdapter = (MyListAdapter)mListView.getAdapter();
+        myListAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -54,15 +65,16 @@ public class MainActivity extends AppCompatActivity
                 fragment.show(getSupportFragmentManager(), "MyDialogFragment");
             }
         });
-initListView();
+        initListView();
     }
 
-    private void initListView(){
-        mListView = (ListView)findViewById(R.id.listview);
+    private void initListView() {
+        mListView = (ListView) findViewById(R.id.listview);
         mListView.setEmptyView(findViewById(R.id.empty));
         mListView.setAdapter(new MyListAdapter(this));
         mListView.setOnItemClickListener(this);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -100,7 +112,7 @@ initListView();
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        Snackbar.make(fab, "點選了第 " + (i+1) + " 項", Snackbar.LENGTH_SHORT)
+        Snackbar.make(fab, "點選了第 " + (i + 1) + " 項", Snackbar.LENGTH_SHORT)
                 .setAction("Action", null).show();
     }
 }
